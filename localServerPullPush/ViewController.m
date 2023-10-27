@@ -32,10 +32,19 @@
     [self showActivityIndicator];
     [self fetchUsersAndFillUserArray:^(NSError *error, BOOL success) {
         if(success) {
-            NSLog(@"%@",self.usersArray);
             [self hideActivityIndicator];
         } else {
-            NSLog(@"Something fed up");
+            [self hideActivityIndicator];
+            UIAlertAction *alertCancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+            UIAlertAction *alertReload = [UIAlertAction actionWithTitle:@"Reload" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [self viewDidLoad];
+            }];
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error fetching data" message:@"Something fed up" preferredStyle:UIAlertControllerStyleAlert];
+            
+            [alertController addAction:alertReload];
+            [alertController addAction:alertCancel];
+            [self presentViewController:alertController animated:YES completion:nil];
+            
         }
     }];
 
