@@ -26,13 +26,16 @@
     self.labelUnderSpinner = [[UILabel alloc] init];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"Welcome Users";
+    self.title = @"Touch Up";
     self.usersArray = [[NSMutableArray alloc] init];
     
     [self showActivityIndicator];
     [self fetchUsersAndFillUserArray:^(NSError *error, BOOL success) {
         if(success) {
             [self hideActivityIndicator];
+            
+            
+            //need to add functionality here
         } else {
             [self hideActivityIndicator];
             UIAlertAction *alertCancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
@@ -71,6 +74,7 @@
 }
 
 -(void)hideActivityIndicator {
+    [self.spinner stopAnimating];
     [self.labelUnderSpinner removeFromSuperview];
     [self.spinner removeFromSuperview];
     [self.ActivityIndicatorView removeFromSuperview];
@@ -94,7 +98,6 @@
                 User *user = [[User alloc] initWith:[arr[@"id"] intValue] withName:arr[@"user_name"] withPassword:arr[@"user_password"]];
                 [self.usersArray addObject:user];
             }
-            [self loadDataNow];
             callback(nil, YES);
             //NSLog(@"%@", error);
         } else {
@@ -105,11 +108,6 @@
         
         }] resume] ;
 }
-
--(void) loadDataNow {
-    self.didFinishFetching = YES;
-}
-
 
 
 @end
