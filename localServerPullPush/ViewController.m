@@ -10,6 +10,10 @@
 
 @interface ViewController ()
 
+@property (nonatomic) UIView *ActivityIndicatorView;
+@property (nonatomic) UIActivityIndicatorView *spinner;
+@property (nonatomic) UILabel *labelUnderSpinner;
+
 
 @end
 
@@ -17,19 +21,50 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.ActivityIndicatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleMedium];
+    self.labelUnderSpinner = [[UILabel alloc] init];
+    
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"Welcome Users";
     self.usersArray = [[NSMutableArray alloc] init];
     
+    [self showActivityIndicator];
     [self fetchUsersAndFillUserArray:^(NSError *error, BOOL success) {
         if(success) {
             NSLog(@"%@",self.usersArray);
+            [self hideActivityIndicator];
         } else {
             NSLog(@"Something fed up");
         }
     }];
 
     // Do any additional setup after loading the view.
+}
+
+-(void)showActivityIndicator {
+    self.ActivityIndicatorView.backgroundColor = [UIColor lightGrayColor];
+    [self.view addSubview:self.ActivityIndicatorView];
+    
+    
+    self.spinner.color = [UIColor blackColor];
+    self.spinner.center = self.ActivityIndicatorView.center;
+    [self.ActivityIndicatorView addSubview:self.spinner];
+    [self.spinner startAnimating];
+    
+    self.labelUnderSpinner.text = @"Please wait fetching users from server";
+    self.labelUnderSpinner.textColor = [UIColor blackColor];
+    self.labelUnderSpinner.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.ActivityIndicatorView addSubview:self.labelUnderSpinner];
+    
+    [self.labelUnderSpinner.centerXAnchor constraintEqualToAnchor:self.ActivityIndicatorView.centerXAnchor].active = YES;
+    [self.labelUnderSpinner.topAnchor constraintEqualToAnchor:self.spinner.bottomAnchor constant:10].active = YES;
+}
+
+-(void)hideActivityIndicator {
+    [self.labelUnderSpinner removeFromSuperview];
+    [self.spinner removeFromSuperview];
+    [self.ActivityIndicatorView removeFromSuperview];
 }
 
 -(void) fetchUsersAndFillUserArray:(void (^)(NSError *error, BOOL success))callback {
