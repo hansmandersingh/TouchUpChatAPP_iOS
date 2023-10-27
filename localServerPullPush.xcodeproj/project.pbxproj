@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D6AE52D42AEAB43B00DBE742 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D6AE52D32AEAB43A00DBE742 /* User.m */; };
 		D6D41C1C2AE9DEC600A47C40 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D41C1B2AE9DEC600A47C40 /* AppDelegate.m */; };
 		D6D41C1F2AE9DEC600A47C40 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D41C1E2AE9DEC600A47C40 /* SceneDelegate.m */; };
 		D6D41C222AE9DEC600A47C40 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D41C212AE9DEC600A47C40 /* ViewController.m */; };
@@ -16,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D6AE52D22AEAB43A00DBE742 /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		D6AE52D32AEAB43A00DBE742 /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		D6D41C172AE9DEC600A47C40 /* localServerPullPush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = localServerPullPush.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6D41C1A2AE9DEC600A47C40 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D6D41C1B2AE9DEC600A47C40 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -69,6 +72,8 @@
 				D6D41C282AE9DEC800A47C40 /* LaunchScreen.storyboard */,
 				D6D41C2B2AE9DEC800A47C40 /* Info.plist */,
 				D6D41C2C2AE9DEC800A47C40 /* main.m */,
+				D6AE52D22AEAB43A00DBE742 /* User.h */,
+				D6AE52D32AEAB43A00DBE742 /* User.m */,
 			);
 			path = localServerPullPush;
 			sourceTree = "<group>";
@@ -142,6 +147,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6AE52D42AEAB43B00DBE742 /* User.m in Sources */,
 				D6D41C222AE9DEC600A47C40 /* ViewController.m in Sources */,
 				D6D41C1C2AE9DEC600A47C40 /* AppDelegate.m in Sources */,
 				D6D41C2D2AE9DEC800A47C40 /* main.m in Sources */,

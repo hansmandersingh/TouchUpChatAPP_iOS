@@ -6,9 +6,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 
 @interface ViewController : UIViewController
 
+@property (nonatomic) NSMutableArray<User *> *usersArray;
+@property (nonatomic) BOOL didFinishFetching;
 
 @end
 
