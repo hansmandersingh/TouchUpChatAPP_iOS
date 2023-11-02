@@ -21,11 +21,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.ActivityIndicatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleMedium];
-    self.labelUnderSpinner = [[UILabel alloc] init];
+    [self initializationDoneHere];
     
     self.view.backgroundColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.prefersLargeTitles = YES;
     self.title = @"Touch Up";
     self.usersArray = [[NSMutableArray alloc] init];
     
@@ -34,7 +33,7 @@
         if(success) {
             [self hideActivityIndicator];
             
-            
+            [self loginInfoPage];
             //need to add functionality here
         } else {
             [self hideActivityIndicator];
@@ -52,6 +51,87 @@
     }];
 
     // Do any additional setup after loading the view.
+}
+
+-(void)loginInfoPage {
+    self.usernameLabel.text = @"Username";
+    self.usernameLabel.textAlignment = NSTextAlignmentLeft;
+    self.usernameLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:self.usernameLabel];
+    
+    self.passwordLabel.text = @"Password";
+    self.passwordLabel.textAlignment = NSTextAlignmentLeft;
+    self.passwordLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:self.passwordLabel];
+    
+    self.loginUsernameField.placeholder = @"Enter your username:";
+    self.loginUsernameField.borderStyle = UITextBorderStyleRoundedRect;
+    self.loginUsernameField.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:self.loginUsernameField];
+    
+    self.loginPasswordField.placeholder = @"Enter your password:";
+    self.loginPasswordField.borderStyle = UITextBorderStyleRoundedRect;
+    self.loginPasswordField.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:self.loginPasswordField];
+    
+    [self.loginButton setTitle:@"  Login  " forState:UIControlStateNormal];
+    [self.loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.loginButton.titleLabel setFont:[UIFont systemFontOfSize:23]];
+    self.loginButton.backgroundColor = [UIColor systemBlueColor];
+    self.loginButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:self.loginButton];
+    
+    [self.usernameLabel.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant:20].active = YES;
+    [self.usernameLabel.leadingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor constant:10].active = YES;
+    [self.usernameLabel.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor constant:-10].active = YES;
+    
+    [self.loginUsernameField.topAnchor constraintEqualToAnchor:self.usernameLabel.bottomAnchor constant:10].active = YES;
+    [self.loginUsernameField.leadingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor constant:10].active = YES;
+    [self.loginUsernameField.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor constant:-10].active = YES;
+    
+    [self.passwordLabel.topAnchor constraintEqualToAnchor:self.loginUsernameField.bottomAnchor constant:20].active = YES;
+    [self.passwordLabel.leadingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor constant:10].active = YES;
+    [self.passwordLabel.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor constant:-10].active = YES;
+    
+    [self.loginPasswordField.topAnchor constraintEqualToAnchor:self.passwordLabel.bottomAnchor constant:10].active = YES;
+    [self.loginPasswordField.leadingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor constant:10].active = YES;
+    [self.loginPasswordField.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor constant:-10].active = YES;
+    
+    [self.loginButton.topAnchor constraintEqualToAnchor:self.loginPasswordField.bottomAnchor constant:20].active = YES;
+    [self.loginButton.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
+    
+}
+
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
+    [super traitCollectionDidChange:previousTraitCollection];
+    switch (self.traitCollection.userInterfaceStyle) {
+        case UIUserInterfaceStyleDark:
+            self.view.backgroundColor = [UIColor blackColor];
+            break;
+        case UIUserInterfaceStyleLight:
+            self.view.backgroundColor = [UIColor whiteColor];
+            break;
+            
+        default:
+            break;
+    }
+}
+
+-(void)initializationDoneHere {
+    self.ActivityIndicatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleMedium];
+    self.labelUnderSpinner = [[UILabel alloc] init];
+    self.usernameLabel = [[UILabel alloc] init];
+    self.passwordLabel = [[UILabel alloc] init];
+    self.loginUsernameField = [[UITextField alloc] init];
+    self.loginPasswordField = [[UITextField alloc] init];
+    self.loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+}
+
+-(void)showUserAuthorization {
+    //Login and register func for views
+    
+    
 }
 
 -(void)showActivityIndicator {

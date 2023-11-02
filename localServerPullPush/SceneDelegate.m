@@ -22,7 +22,6 @@
     _window = [[UIWindow alloc] initWithWindowScene:(UIWindowScene *)scene];
     _window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[ViewController new]];
     [_window makeKeyAndVisible];
-    _window.rootViewController.navigationItem.largeTitleDisplayMode = YES;
 }
 
 
