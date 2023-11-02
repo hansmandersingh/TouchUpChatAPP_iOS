@@ -78,7 +78,6 @@
             [self shake:self.loginUsernameField];
             [self shake:self.loginPasswordField];
             [self showCustomErrorHandler:@"Please enter a username and password"];
-            NSLog(@"nothin");
         }
     }
 }
