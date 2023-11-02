@@ -8,7 +8,10 @@
 #import "ViewController.h"
 #import "User.h"
 
-@interface ViewController ()
+@interface ViewController ()<UITextFieldDelegate> {
+    int direction;
+    int shakes;
+}
 
 @property (nonatomic) UIView *ActivityIndicatorView;
 @property (nonatomic) UIActivityIndicatorView *spinner;
@@ -34,6 +37,8 @@
             [self hideActivityIndicator];
             
             [self loginInfoPage];
+            
+            [self.loginButton addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
             //need to add functionality here
         } else {
             [self hideActivityIndicator];
@@ -53,6 +58,54 @@
     // Do any additional setup after loading the view.
 }
 
+-(void)login {
+    // this checks for login stuff
+    if (self.usersArray.count != 0) {
+        User *loggedInUser;
+        for(User *user in self.usersArray) {
+            if([user.user_name isEqualToString:self.loginUsernameField.text] && [user.user_password isEqualToString:self.loginPasswordField.text]) {
+                NSLog(@"%@",user.user_name);
+                NSLog(@"%@",user.user_password);
+                loggedInUser = [[User alloc] initWith:user.idNumber withName:user.user_name withPassword:user.user_password];
+                break;
+            }
+        }
+        if(loggedInUser) {
+            NSLog(@"%@",loggedInUser.user_name);
+        } else {
+            direction = 1;
+            shakes = 0;
+            [self shake:self.loginUsernameField];
+            [self shake:self.loginPasswordField];
+            NSLog(@"nothin");
+        }
+    }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
+-(void)shake:(UIView *)theOneYouWannaShake
+{
+  [UIView animateWithDuration:0.03 animations:^
+                                  {
+      theOneYouWannaShake.transform = CGAffineTransformMakeTranslation(5*self->direction, 0);
+                                  }
+                                  completion:^(BOOL finished)
+                                  {
+      if(self->shakes >= 10)
+                                    {
+                                      theOneYouWannaShake.transform = CGAffineTransformIdentity;
+                                      return;
+                                    }
+      self->shakes++;
+      self->direction = self->direction * -1;
+                                    [self shake:theOneYouWannaShake];
+                                  }];
+}
+
 -(void)loginInfoPage {
     self.usernameLabel.text = @"Username";
     self.usernameLabel.textAlignment = NSTextAlignmentLeft;
@@ -66,11 +119,16 @@
     
     self.loginUsernameField.placeholder = @"Enter your username:";
     self.loginUsernameField.borderStyle = UITextBorderStyleRoundedRect;
+    self.loginUsernameField.delegate = self;
+    [self.loginUsernameField setReturnKeyType:UIReturnKeyDone];
     self.loginUsernameField.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.loginUsernameField];
     
     self.loginPasswordField.placeholder = @"Enter your password:";
     self.loginPasswordField.borderStyle = UITextBorderStyleRoundedRect;
+    [self.loginPasswordField setSecureTextEntry:YES];
+    self.loginPasswordField.delegate = self;
+    [self.loginPasswordField setReturnKeyType:UIReturnKeyDone];
     self.loginPasswordField.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.loginPasswordField];
     
