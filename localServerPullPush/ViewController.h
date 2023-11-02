@@ -17,6 +17,7 @@
 @property (nonatomic) UILabel *passwordLabel;
 @property (nonatomic) UITextField *loginPasswordField;
 @property (nonatomic) UIButton *loginButton;
+@property (nonatomic) UILabel *customErrorHandler;
 
 @end
 

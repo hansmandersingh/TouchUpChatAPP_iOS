@@ -77,6 +77,7 @@
             shakes = 0;
             [self shake:self.loginUsernameField];
             [self shake:self.loginPasswordField];
+            [self showCustomErrorHandler:@"Please enter a username and password"];
             NSLog(@"nothin");
         }
     }
@@ -160,6 +161,29 @@
     
 }
 
+-(void)showCustomErrorHandler:(NSString *) errorString {
+    [self.customErrorHandler setText:errorString];
+    [self.customErrorHandler setBackgroundColor:[UIColor systemRedColor]];
+    [self.customErrorHandler setTextColor:[UIColor blackColor]];
+    [self.customErrorHandler setTextAlignment:NSTextAlignmentCenter];
+    self.customErrorHandler.translatesAutoresizingMaskIntoConstraints = NO;
+    CATransition *transition = [CATransition animation];
+    transition.duration = 1.0;
+    transition.type = kCATransitionReveal; //choose your animation
+    [self.customErrorHandler.layer addAnimation:transition forKey:nil];
+    [self.view addSubview:self.customErrorHandler];
+    
+    [self.customErrorHandler.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor].active = YES;
+    [self.customErrorHandler.leadingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor].active = YES;
+    [self.customErrorHandler.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor].active = YES;
+    [self.customErrorHandler.heightAnchor constraintEqualToConstant:30].active = YES;
+    
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [self.customErrorHandler removeFromSuperview];
+    });
+}
+
 - (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
     [super traitCollectionDidChange:previousTraitCollection];
     switch (self.traitCollection.userInterfaceStyle) {
@@ -184,6 +208,7 @@
     self.loginUsernameField = [[UITextField alloc] init];
     self.loginPasswordField = [[UITextField alloc] init];
     self.loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.customErrorHandler = [[UILabel alloc] init];
 }
 
 -(void)showUserAuthorization {
