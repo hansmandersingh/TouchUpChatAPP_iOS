@@ -499,6 +499,11 @@
       "id": 99,
       "user_name": "Kayla Gulgowski",
       "user_password": "xRVxtr1UNQFsRh6"
+    }, 
+    {
+      "id": 100,
+      "user_name": "Hans",
+      "user_password": "Admin"
     }
   ]
 }
