@@ -59,8 +59,12 @@
 }
 
 -(void)login {
+    //shaker works here with just on shake
+    direction = 1;
+    shakes = 0;
     // this checks for login stuff
-    if (self.usersArray.count != 0) {
+    if (self.usersArray.count != 0 && ![self.loginUsernameField.text isEqual:@""] && ![self.loginPasswordField.text isEqual:@""]) {
+        NSLog(@"%@", self.loginUsernameField.text);
         User *loggedInUser;
         for(User *user in self.usersArray) {
             if([user.user_name isEqualToString:self.loginUsernameField.text] && [user.user_password isEqualToString:self.loginPasswordField.text]) {
@@ -73,12 +77,18 @@
         if(loggedInUser) {
             NSLog(@"%@",loggedInUser.user_name);
         } else {
-            direction = 1;
-            shakes = 0;
             [self shake:self.loginUsernameField];
             [self shake:self.loginPasswordField];
-            [self showCustomErrorHandler:@"Please enter a username and password"];
+            [self showCustomErrorHandler:@"User not found"];
         }
+    }else if ([self.loginUsernameField.text isEqual:@""] && [self.loginPasswordField.text isEqual:@""]) {
+        [self shake:self.loginUsernameField];
+        [self shake:self.loginPasswordField];
+        [self showCustomErrorHandler:@"Please enter Username and password"];
+    } else {
+        [self shake:self.loginUsernameField];
+        [self shake:self.loginPasswordField];
+        [self showCustomErrorHandler:@"Error fetching users from server"];
     }
 }
 
