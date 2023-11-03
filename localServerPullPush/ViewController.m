@@ -7,6 +7,7 @@
 
 #import "ViewController.h"
 #import "User.h"
+#import "UserMainViewController.h"
 
 @interface ViewController ()<UITextFieldDelegate> {
     int direction;
@@ -26,7 +27,11 @@
     [super viewDidLoad];
     [self initializationDoneHere];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+        self.view.backgroundColor = [UIColor blackColor];
+    } else {
+        self.view.backgroundColor = [UIColor whiteColor];
+    }
     self.navigationController.navigationBar.prefersLargeTitles = YES;
     self.title = @"Touch Up";
     self.usersArray = [[NSMutableArray alloc] init];
@@ -75,6 +80,8 @@
             }
         }
         if(loggedInUser) {
+            UserMainViewController *userViewController = [[UserMainViewController alloc] init];
+            [self.navigationController pushViewController:userViewController animated:YES];
             NSLog(@"%@",loggedInUser.user_name);
         } else {
             [self shake:self.loginUsernameField];
