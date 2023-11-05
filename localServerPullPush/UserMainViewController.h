@@ -6,10 +6,13 @@
 //
 
 #import "ViewController.h"
+#import "ViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UserMainViewController : UIViewController
+
+@property (nonatomic) UISearchBar *searchBar;
 
 @end
 

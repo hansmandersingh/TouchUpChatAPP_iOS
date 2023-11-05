@@ -7,7 +7,7 @@
 
 #import "UserMainViewController.h"
 
-@interface UserMainViewController ()
+@interface UserMainViewController ()<UISearchBarDelegate>
 
 @end
 
@@ -21,9 +21,37 @@
     } else {
         self.view.backgroundColor = [UIColor whiteColor];
     }
-    
     self.title = @"Messages";
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Log Off" style:UIBarButtonItemStyleDone target:self action:@selector(changeToLogOffView)];
+    self.navigationItem.rightBarButtonItem = rightButton;
+
+    [self initializationOfProperties];
+    [self addSearchBarToView];
+    
+    
     // Do any additional setup after loading the view.
+}
+
+-(void)changeToLogOffView{
+    ViewController *loginVC = [ViewController new];
+    [self.navigationController setViewControllers:@[loginVC] animated:YES];
+}
+
+-(void) initializationOfProperties{
+    self.searchBar = [[UISearchBar alloc] init];
+    
+}
+
+-(void) addSearchBarToView {
+    self.searchBar.delegate = self;
+    self.searchBar.placeholder = @"Search";
+    self.searchBar.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    [self.view addSubview:self.searchBar];
+    
+    [self.searchBar.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant:10].active = YES;
+    [self.searchBar.leadingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor constant:10].active = YES;
+    [self.searchBar.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor constant:-10].active = YES;
 }
 
 - (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {

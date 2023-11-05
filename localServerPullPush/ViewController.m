@@ -69,20 +69,20 @@
     shakes = 0;
     // this checks for login stuff
     if (self.usersArray.count != 0 && ![self.loginUsernameField.text isEqual:@""] && ![self.loginPasswordField.text isEqual:@""]) {
-        NSLog(@"%@", self.loginUsernameField.text);
+        //NSLog(@"%@", self.loginUsernameField.text);
         User *loggedInUser;
         for(User *user in self.usersArray) {
             if([user.user_name isEqualToString:self.loginUsernameField.text] && [user.user_password isEqualToString:self.loginPasswordField.text]) {
-                NSLog(@"%@",user.user_name);
-                NSLog(@"%@",user.user_password);
                 loggedInUser = [[User alloc] initWith:user.idNumber withName:user.user_name withPassword:user.user_password];
                 break;
             }
         }
         if(loggedInUser) {
             UserMainViewController *userViewController = [[UserMainViewController alloc] init];
-            [self.navigationController pushViewController:userViewController animated:YES];
-            NSLog(@"%@",loggedInUser.user_name);
+            [self.loginPasswordField setText:@""];
+            [self.loginUsernameField setText:@""];
+            [self.navigationController setViewControllers:@[userViewController] animated:YES];
+            
         } else {
             [self shake:self.loginUsernameField];
             [self shake:self.loginPasswordField];
