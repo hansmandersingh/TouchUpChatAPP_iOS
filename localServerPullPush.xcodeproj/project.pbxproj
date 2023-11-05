@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D6323D182AF5884700C74956 /* UserMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6323D172AF5884700C74956 /* UserMainViewController.m */; };
+		D633814A2AF77DCB005EFF0B /* ShareAblesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63381492AF77DCB005EFF0B /* ShareAblesViewController.m */; };
 		D6AE52D42AEAB43B00DBE742 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D6AE52D32AEAB43A00DBE742 /* User.m */; };
 		D6D41C1C2AE9DEC600A47C40 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D41C1B2AE9DEC600A47C40 /* AppDelegate.m */; };
 		D6D41C1F2AE9DEC600A47C40 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D41C1E2AE9DEC600A47C40 /* SceneDelegate.m */; };
@@ -20,6 +21,8 @@
 /* Begin PBXFileReference section */
 		D6323D162AF5884700C74956 /* UserMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserMainViewController.h; sourceTree = "<group>"; };
 		D6323D172AF5884700C74956 /* UserMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserMainViewController.m; sourceTree = "<group>"; };
+		D63381482AF77DCB005EFF0B /* ShareAblesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareAblesViewController.h; sourceTree = "<group>"; };
+		D63381492AF77DCB005EFF0B /* ShareAblesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareAblesViewController.m; sourceTree = "<group>"; };
 		D6AE52D22AEAB43A00DBE742 /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		D6AE52D32AEAB43A00DBE742 /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		D6D41C172AE9DEC600A47C40 /* localServerPullPush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = localServerPullPush.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,6 +82,8 @@
 				D6AE52D32AEAB43A00DBE742 /* User.m */,
 				D6323D162AF5884700C74956 /* UserMainViewController.h */,
 				D6323D172AF5884700C74956 /* UserMainViewController.m */,
+				D63381482AF77DCB005EFF0B /* ShareAblesViewController.h */,
+				D63381492AF77DCB005EFF0B /* ShareAblesViewController.m */,
 			);
 			path = localServerPullPush;
 			sourceTree = "<group>";
@@ -157,6 +162,7 @@
 				D6D41C222AE9DEC600A47C40 /* ViewController.m in Sources */,
 				D6D41C1C2AE9DEC600A47C40 /* AppDelegate.m in Sources */,
 				D6D41C2D2AE9DEC800A47C40 /* main.m in Sources */,
+				D633814A2AF77DCB005EFF0B /* ShareAblesViewController.m in Sources */,
 				D6D41C1F2AE9DEC600A47C40 /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

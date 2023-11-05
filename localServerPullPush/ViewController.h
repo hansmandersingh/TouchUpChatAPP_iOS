@@ -6,9 +6,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ShareAblesViewController.h"
 #import "User.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : ShareAblesViewController
 
 @property (nonatomic) NSMutableArray<User *> *usersArray;
 @property (nonatomic) BOOL didFinishFetching;

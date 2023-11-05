@@ -10,9 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UserMainViewController : UIViewController
+@interface UserMainViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic) UISearchBar *searchBar;
+@property (nonatomic) UITableView *messagesTable;
 
 @end
 

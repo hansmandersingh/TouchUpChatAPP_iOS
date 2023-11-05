@@ -7,7 +7,9 @@
 
 #import "UserMainViewController.h"
 
-@interface UserMainViewController ()<UISearchBarDelegate>
+@interface UserMainViewController ()<UISearchBarDelegate> {
+    NSArray *messages;
+}
 
 @end
 
@@ -22,14 +24,27 @@
         self.view.backgroundColor = [UIColor whiteColor];
     }
     self.title = @"Messages";
+    messages = @[@"hello", @"How"];
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Log Off" style:UIBarButtonItemStyleDone target:self action:@selector(changeToLogOffView)];
     self.navigationItem.rightBarButtonItem = rightButton;
 
     [self initializationOfProperties];
     [self addSearchBarToView];
-    
+    self.messagesTable.delegate = self;
+    self.messagesTable.dataSource = self;
+    [self setupTableView];
     
     // Do any additional setup after loading the view.
+}
+
+-(void)setupTableView {
+    self.messagesTable.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:self.messagesTable];
+    
+    [self.messagesTable.topAnchor constraintEqualToAnchor:self.searchBar.bottomAnchor constant:10].active = YES;
+    [self.messagesTable.leadingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor constant:10].active = YES;
+    [self.messagesTable.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor constant:-10].active = YES;
+    [self.messagesTable.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor constant:-10].active = YES;
 }
 
 -(void)changeToLogOffView{
@@ -39,6 +54,7 @@
 
 -(void) initializationOfProperties{
     self.searchBar = [[UISearchBar alloc] init];
+    self.messagesTable = [[UITableView alloc] init];
     
 }
 
@@ -77,5 +93,21 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    static NSString *cellIdentifier = @"messagesCell";
+    UITableViewCell *cell = [self.messagesTable dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if(cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell.textLabel.text = [messages objectAtIndex:indexPath.item];
+    }
+    return cell;
+    
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return messages.count;
+}
 
 @end
