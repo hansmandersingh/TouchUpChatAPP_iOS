@@ -25,6 +25,7 @@
     }
     self.title = @"Messages";
     messages = @[@"hello", @"How"];
+    
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Log Off" style:UIBarButtonItemStyleDone target:self action:@selector(changeToLogOffView)];
     self.navigationItem.rightBarButtonItem = rightButton;
 
@@ -33,6 +34,8 @@
     self.messagesTable.delegate = self;
     self.messagesTable.dataSource = self;
     [self setupTableView];
+    [self showActivityIndicator];
+    [self hideActivityIndicator];
     
     // Do any additional setup after loading the view.
 }
@@ -55,7 +58,9 @@
 -(void) initializationOfProperties{
     self.searchBar = [[UISearchBar alloc] init];
     self.messagesTable = [[UITableView alloc] init];
-    
+    self.ActivityIndicatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleMedium];
+    self.labelUnderSpinner = [[UILabel alloc] init];
 }
 
 -(void) addSearchBarToView {

@@ -29,7 +29,7 @@
     [self.ActivityIndicatorView addSubview:self.spinner];
     [self.spinner startAnimating];
     
-    self.labelUnderSpinner.text = @"Please wait fetching users from server";
+    self.labelUnderSpinner.text = @"Please wait fetching data from server";
     self.labelUnderSpinner.textColor = [UIColor blackColor];
     self.labelUnderSpinner.translatesAutoresizingMaskIntoConstraints = NO;
     [self.ActivityIndicatorView addSubview:self.labelUnderSpinner];

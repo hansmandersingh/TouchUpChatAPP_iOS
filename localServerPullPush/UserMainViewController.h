@@ -6,11 +6,11 @@
 //
 
 #import "ViewController.h"
-#import "ViewController.h"
+#import "ShareAblesViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UserMainViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+@interface UserMainViewController : ShareAblesViewController<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic) UISearchBar *searchBar;
 @property (nonatomic) UITableView *messagesTable;
