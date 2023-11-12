@@ -33,7 +33,7 @@
     [self setupTableView];
     [self showActivityIndicator];
     
-    [self startGettingMessages:10 completion: ^(NSError *error, BOOL success) {
+    [self startGettingMessages:self.loggedUserId completion: ^(NSError *error, BOOL success) {
         if(success) {
             [self hideActivityIndicator];
             //NSLog(@"%@",self.messages[0].messageReceived);

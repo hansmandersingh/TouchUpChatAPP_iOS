@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) UISearchBar *searchBar;
 @property (nonatomic) UITableView *messagesTable;
 @property (nonatomic) NSMutableArray<UserMessage *>* messages;
+@property (nonatomic) int loggedUserId;
 
 @end
 

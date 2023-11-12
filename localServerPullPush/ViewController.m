@@ -75,6 +75,7 @@
         }
         if(loggedInUser) {
             UserMainViewController *userViewController = [[UserMainViewController alloc] init];
+            userViewController.loggedUserId = loggedInUser.idNumber;
             [self.loginPasswordField setText:@""];
             [self.loginUsernameField setText:@""];
             [self.navigationController setViewControllers:@[userViewController] animated:YES];
