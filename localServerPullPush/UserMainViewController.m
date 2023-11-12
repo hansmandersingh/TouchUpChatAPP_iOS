@@ -7,10 +7,7 @@
 
 #import "UserMainViewController.h"
 
-@interface UserMainViewController ()<UISearchBarDelegate> {
-    NSArray *messages;
-}
-
+@interface UserMainViewController ()<UISearchBarDelegate>
 @end
 
 @implementation UserMainViewController
@@ -24,7 +21,7 @@
         self.view.backgroundColor = [UIColor whiteColor];
     }
     self.title = @"Messages";
-    messages = @[@"hello", @"How"];
+    self.messages = [[NSMutableArray alloc] init];
     
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Log Off" style:UIBarButtonItemStyleDone target:self action:@selector(changeToLogOffView)];
     self.navigationItem.rightBarButtonItem = rightButton;
@@ -35,9 +32,43 @@
     self.messagesTable.dataSource = self;
     [self setupTableView];
     [self showActivityIndicator];
-    [self hideActivityIndicator];
+    
+    [self startGettingMessages:^(NSError *error, BOOL success) {
+        if(success) {
+            [self hideActivityIndicator];
+            NSLog(@"%@",self.messages[0].messageReceived);
+            [self->_messagesTable reloadData];
+        }
+    }];
     
     // Do any additional setup after loading the view.
+}
+
+-(void)startGettingMessages:(void(^)(NSError *error, BOOL success))callback {
+    NSString *url_String = @"http://192.168.100.105:4001/messages";
+    
+    NSURL *url = [NSURL URLWithString:url_String];
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *delegateFreeSession = [NSURLSession sessionWithConfiguration:config delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
+    
+    [[delegateFreeSession dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSError *err;
+        if(!error){
+            NSString *dataString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+            NSData *newData = [dataString dataUsingEncoding:NSUTF8StringEncoding];
+            NSArray *allMessages = [NSJSONSerialization JSONObjectWithData:newData options:kNilOptions error:&err];
+            for (id arr in allMessages) {
+                UserMessage *userMessage = [[UserMessage alloc] initWithId:[arr[@"id"] intValue] fromuserId:[arr[@"message_from_id"] intValue] foruser:[arr[@"user_id"] intValue] withTextMessage:arr[@"user_message_received"]];
+                [self.messages addObject:userMessage];
+                
+            }
+            callback(nil, YES);
+        } else {
+            NSLog(@"%@", error);
+            callback(nil, NO);
+            return;
+        }
+    }]resume];
 }
 
 -(void)setupTableView {
@@ -89,15 +120,7 @@
             break;
     }
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"messagesCell";
@@ -105,14 +128,15 @@
     
     if(cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-        cell.textLabel.text = [messages objectAtIndex:indexPath.item];
+        cell.textLabel.text = self.messages[indexPath.row].messageReceived;
+        
     }
     return cell;
     
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return messages.count;
+    return self.messages.count;
 }
 
 @end

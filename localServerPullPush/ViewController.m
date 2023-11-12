@@ -232,7 +232,7 @@
 
 
 -(void) fetchUsersAndFillUserArray:(void (^)(NSError *error, BOOL success))callback {
-    NSString *url_String = @"http://localhost:3000/users";
+    NSString *url_String = @"http://192.168.100.105:4000/users";
     
     NSURL *url = [NSURL URLWithString:url_String];
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];

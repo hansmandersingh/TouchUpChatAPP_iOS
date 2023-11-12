@@ -7,6 +7,7 @@
 
 #import "ViewController.h"
 #import "ShareAblesViewController.h"
+#import "UserMessage.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic) UISearchBar *searchBar;
 @property (nonatomic) UITableView *messagesTable;
+@property (nonatomic) NSMutableArray<UserMessage *>* messages;
 
 @end
 
