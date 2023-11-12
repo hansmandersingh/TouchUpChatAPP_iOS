@@ -33,10 +33,10 @@
     [self setupTableView];
     [self showActivityIndicator];
     
-    [self startGettingMessages:^(NSError *error, BOOL success) {
+    [self startGettingMessages:10 completion: ^(NSError *error, BOOL success) {
         if(success) {
             [self hideActivityIndicator];
-            NSLog(@"%@",self.messages[0].messageReceived);
+            //NSLog(@"%@",self.messages[0].messageReceived);
             [self->_messagesTable reloadData];
         }
     }];
@@ -44,9 +44,10 @@
     // Do any additional setup after loading the view.
 }
 
--(void)startGettingMessages:(void(^)(NSError *error, BOOL success))callback {
-    NSString *url_String = @"http://192.168.100.105:4001/messages";
+-(void)startGettingMessages:(int)userId completion:(void(^)(NSError *error, BOOL success))callback {
     
+    NSString *url_String = [NSString stringWithFormat:@"http://192.168.100.105:4001/messages?user_id=%d", userId];
+    NSLog(@"%@",url_String);
     NSURL *url = [NSURL URLWithString:url_String];
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *delegateFreeSession = [NSURLSession sessionWithConfiguration:config delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
