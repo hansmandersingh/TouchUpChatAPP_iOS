@@ -34,21 +34,44 @@
     
     //adding refreshcontrol ui here yaay
     
+    if (@available(iOS 10.0, *)) {
+        self.messagesTable.refreshControl = self.refreshControl;
+    } else {
+        [self.messagesTable addSubview:self.refreshControl];
+    }
     
     [self showActivityIndicator];
     
-    [self startGettingMessages:self.loggedUserId completion: ^(NSError *error, BOOL success) {
+    [self getMessagesWithUserId:self.loggedUserId];
+    
+    // Do any additional setup after loading the view.
+}
+
+-(void) getMessagesWithUserId:(int) userId {
+    [self startGettingMessages:userId completion: ^(NSError *error, BOOL success) {
         if(success) {
             [self hideActivityIndicator];
             //NSLog(@"%@",self.messages[0].messageReceived);
             [self->_messagesTable reloadData];
+            [self.refreshControl addTarget:self action:@selector(refreshTableWithNoUpdates) forControlEvents:UIControlEventValueChanged];
         } else {
             [self hideActivityIndicator];
             [self showCustomErrorHandler:@"Error Fetching Messages" withErrorHandler:self.customErrorHandler];
+            [self.refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
         }
     }];
+}
+
+-(void)refreshTable {
+    [self getMessagesWithUserId:self.loggedUserId];
+    [_refreshControl endRefreshing];
+    [self.messagesTable reloadData];
     
-    // Do any additional setup after loading the view.
+}
+
+-(void)refreshTableWithNoUpdates {
+    [_refreshControl endRefreshing];
+    [self.messagesTable reloadData];
 }
 
 -(void)startGettingMessages:(int)userId completion:(void(^)(NSError *error, BOOL success))callback {
