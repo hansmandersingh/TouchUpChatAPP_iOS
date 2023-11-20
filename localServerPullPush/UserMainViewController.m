@@ -64,8 +64,8 @@
 
 -(void)refreshTable {
     [self getMessagesWithUserId:self.loggedUserId];
-    [_refreshControl endRefreshing];
     [self.messagesTable reloadData];
+    [_refreshControl endRefreshing];
     
 }
 
