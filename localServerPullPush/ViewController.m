@@ -83,16 +83,16 @@
         } else {
             [self shake:self.loginUsernameField];
             [self shake:self.loginPasswordField];
-            [self showCustomErrorHandler:@"User not found"];
+            [self showCustomErrorHandler:@"User not found" withErrorHandler:self.customErrorHandler];
         }
     }else if ([self.loginUsernameField.text isEqual:@""] && [self.loginPasswordField.text isEqual:@""]) {
         [self shake:self.loginUsernameField];
         [self shake:self.loginPasswordField];
-        [self showCustomErrorHandler:@"Please enter Username and password"];
+        [self showCustomErrorHandler:@"Please enter Username and password" withErrorHandler:self.customErrorHandler];
     } else {
         [self shake:self.loginUsernameField];
         [self shake:self.loginPasswordField];
-        [self showCustomErrorHandler:@"Error fetching users from server"];
+        [self showCustomErrorHandler:@"Error fetching users from server" withErrorHandler:self.customErrorHandler];
     }
 }
 
@@ -174,26 +174,26 @@
     
 }
 
--(void)showCustomErrorHandler:(NSString *) errorString {
-    [self.customErrorHandler setText:errorString];
-    [self.customErrorHandler setBackgroundColor:[UIColor systemRedColor]];
-    [self.customErrorHandler setTextColor:[UIColor blackColor]];
-    [self.customErrorHandler setTextAlignment:NSTextAlignmentCenter];
-    self.customErrorHandler.translatesAutoresizingMaskIntoConstraints = NO;
+-(void)showCustomErrorHandler:(NSString *) errorString withErrorHandler: (UILabel *) customErrorHandler {
+    [customErrorHandler setText:errorString];
+    [customErrorHandler setBackgroundColor:[UIColor systemRedColor]];
+    [customErrorHandler setTextColor:[UIColor blackColor]];
+    [customErrorHandler setTextAlignment:NSTextAlignmentCenter];
+    customErrorHandler.translatesAutoresizingMaskIntoConstraints = NO;
     CATransition *transition = [CATransition animation];
     transition.duration = 1.0;
     transition.type = kCATransitionReveal; //choose your animation
-    [self.customErrorHandler.layer addAnimation:transition forKey:nil];
-    [self.view addSubview:self.customErrorHandler];
+    [customErrorHandler.layer addAnimation:transition forKey:nil];
+    [self.view addSubview:customErrorHandler];
     
-    [self.customErrorHandler.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor].active = YES;
-    [self.customErrorHandler.leadingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor].active = YES;
-    [self.customErrorHandler.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor].active = YES;
-    [self.customErrorHandler.heightAnchor constraintEqualToConstant:30].active = YES;
+    [customErrorHandler.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor].active = YES;
+    [customErrorHandler.leadingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor].active = YES;
+    [customErrorHandler.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor].active = YES;
+    [customErrorHandler.heightAnchor constraintEqualToConstant:30].active = YES;
     
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [self.customErrorHandler removeFromSuperview];
+        [customErrorHandler removeFromSuperview];
     });
 }
 
@@ -233,7 +233,7 @@
 
 
 -(void) fetchUsersAndFillUserArray:(void (^)(NSError *error, BOOL success))callback {
-    NSString *url_String = @"http://192.168.100.105:4000/users";
+    NSString *url_String = @"http://localhost:3000/users";
     
     NSURL *url = [NSURL URLWithString:url_String];
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];

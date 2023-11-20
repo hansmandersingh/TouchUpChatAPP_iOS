@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) UITableView *messagesTable;
 @property (nonatomic) NSMutableArray<UserMessage *>* messages;
 @property (nonatomic) int loggedUserId;
+@property (nonatomic) UILabel *customErrorHandler;
+@property (nonatomic) UIRefreshControl *refreshControl;
 
 @end
 

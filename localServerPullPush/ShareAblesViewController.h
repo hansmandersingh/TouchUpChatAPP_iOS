@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void)showActivityIndicator;
 -(void)hideActivityIndicator;
+-(void)presentActionVCForFailedFetch;
+-(void)showCustomErrorHandler:(NSString *) errorString withErrorHandler: (UILabel *) customErrorHandler;
 
 @end
 

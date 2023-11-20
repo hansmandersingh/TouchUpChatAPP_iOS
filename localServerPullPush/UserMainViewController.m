@@ -31,6 +31,10 @@
     self.messagesTable.delegate = self;
     self.messagesTable.dataSource = self;
     [self setupTableView];
+    
+    //adding refreshcontrol ui here yaay
+    
+    
     [self showActivityIndicator];
     
     [self startGettingMessages:self.loggedUserId completion: ^(NSError *error, BOOL success) {
@@ -38,6 +42,9 @@
             [self hideActivityIndicator];
             //NSLog(@"%@",self.messages[0].messageReceived);
             [self->_messagesTable reloadData];
+        } else {
+            [self hideActivityIndicator];
+            [self showCustomErrorHandler:@"Error Fetching Messages" withErrorHandler:self.customErrorHandler];
         }
     }];
     
@@ -46,7 +53,7 @@
 
 -(void)startGettingMessages:(int)userId completion:(void(^)(NSError *error, BOOL success))callback {
     
-    NSString *url_String = [NSString stringWithFormat:@"http://192.168.100.105:4001/messages?user_id=%d", userId];
+    NSString *url_String = [NSString stringWithFormat:@"http://localhost:3001/messages?user_id=%d", userId];
     NSLog(@"%@",url_String);
     NSURL *url = [NSURL URLWithString:url_String];
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -93,6 +100,8 @@
     self.ActivityIndicatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleMedium];
     self.labelUnderSpinner = [[UILabel alloc] init];
+    self.customErrorHandler = [[UILabel alloc] init];
+    self.refreshControl = [[UIRefreshControl alloc] init];
 }
 
 -(void) addSearchBarToView {
