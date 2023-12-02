@@ -166,9 +166,7 @@
         
     }
     cell.messageText.text = appDelegate.usersArray[_messages[indexPath.row].messageFromUserId].user_name;
-//    cell.textLabel.text = appDelegate.usersArray[_messages[indexPath.row].messageFromUserId].user_name;
-//    cell.detailTextLabel.text = _messages[indexPath.row].messageReceived;
-    
+    cell.descriptionText.text = self.messages[indexPath.row].messageReceived;
     return cell;
     
 }

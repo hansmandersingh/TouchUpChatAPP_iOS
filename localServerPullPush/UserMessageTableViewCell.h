@@ -12,8 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UserMessageTableViewCell : UITableViewCell
 
-@property (nonatomic, strong) UILabel* messageText;
-
+@property (nonatomic, strong) UILabel *messageText;
+@property (nonatomic, strong) UILabel *descriptionText;
 
 @end
 
