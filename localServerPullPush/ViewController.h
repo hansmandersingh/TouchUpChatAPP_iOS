@@ -8,10 +8,11 @@
 #import <UIKit/UIKit.h>
 #import "ShareAblesViewController.h"
 #import "User.h"
+#import "AppDelegate.h"
+#define appDelegate ((AppDelegate *) [UIApplication sharedApplication].delegate)
 
 @interface ViewController : ShareAblesViewController
 
-@property (nonatomic) NSMutableArray<User *> *usersArray;
 @property (nonatomic) BOOL didFinishFetching;
 @property (nonatomic) UILabel *usernameLabel;
 @property (nonatomic) UITextField *loginUsernameField;

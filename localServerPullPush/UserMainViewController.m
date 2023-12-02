@@ -7,7 +7,7 @@
 
 #import "UserMainViewController.h"
 
-@interface UserMainViewController ()<UISearchBarDelegate>
+@interface UserMainViewController ()<UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource>
 @end
 
 @implementation UserMainViewController
@@ -54,6 +54,7 @@
             //NSLog(@"%@",self.messages[0].messageReceived);
             [self->_messagesTable reloadData];
             [self.refreshControl addTarget:self action:@selector(refreshTableWithNoUpdates) forControlEvents:UIControlEventValueChanged];
+            [self.messagesTable reloadData];
         } else {
             [self hideActivityIndicator];
             [self showCustomErrorHandler:@"Error Fetching Messages" withErrorHandler:self.customErrorHandler];
@@ -76,7 +77,7 @@
 
 -(void)startGettingMessages:(int)userId completion:(void(^)(NSError *error, BOOL success))callback {
     
-    NSString *url_String = [NSString stringWithFormat:@"http://localhost:3001/messages?user_id=%d", userId];
+    NSString *url_String = [NSString stringWithFormat:@"http://192.168.100.105:3001/messages?user_id=%d", userId];
     NSLog(@"%@",url_String);
     NSURL *url = [NSURL URLWithString:url_String];
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -155,15 +156,19 @@
 }
 
 
-- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+- (nonnull UserMessageTableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"messagesCell";
-    UITableViewCell *cell = [self.messagesTable dequeueReusableCellWithIdentifier:cellIdentifier];
+    UserMessageTableViewCell *cell = (UserMessageTableViewCell *)[self.messagesTable dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if(cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-        cell.textLabel.text = self.messages[indexPath.row].messageReceived;
+        cell = [[UserMessageTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+        
         
     }
+    cell.messageText.text = appDelegate.usersArray[_messages[indexPath.row].messageFromUserId].user_name;
+//    cell.textLabel.text = appDelegate.usersArray[_messages[indexPath.row].messageFromUserId].user_name;
+//    cell.detailTextLabel.text = _messages[indexPath.row].messageReceived;
+    
     return cell;
     
 }

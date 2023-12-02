@@ -16,6 +16,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    self.usersArray = [[NSMutableArray alloc] init];
     return YES;
 }
 

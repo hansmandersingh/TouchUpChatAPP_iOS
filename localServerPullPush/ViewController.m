@@ -21,6 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self initializationDoneHere];
     
     if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
@@ -30,7 +31,7 @@
     }
     self.navigationController.navigationBar.prefersLargeTitles = YES;
     self.title = @"Touch Up";
-    self.usersArray = [[NSMutableArray alloc] init];
+    
     
     [self showActivityIndicator];
     [self fetchUsersAndFillUserArray:^(NSError *error, BOOL success) {
@@ -64,10 +65,10 @@
     direction = 1;
     shakes = 0;
     // this checks for login stuff
-    if (self.usersArray.count != 0 && ![self.loginUsernameField.text isEqual:@""] && ![self.loginPasswordField.text isEqual:@""]) {
+    if (appDelegate.usersArray.count != 0 && ![self.loginUsernameField.text isEqual:@""] && ![self.loginPasswordField.text isEqual:@""]) {
         //NSLog(@"%@", self.loginUsernameField.text);
         User *loggedInUser;
-        for(User *user in self.usersArray) {
+        for(User *user in appDelegate.usersArray) {
             if([user.user_name isEqualToString:self.loginUsernameField.text] && [user.user_password isEqualToString:self.loginPasswordField.text]) {
                 loggedInUser = [[User alloc] initWith:user.idNumber withName:user.user_name withPassword:user.user_password];
                 break;
@@ -233,7 +234,7 @@
 
 
 -(void) fetchUsersAndFillUserArray:(void (^)(NSError *error, BOOL success))callback {
-    NSString *url_String = @"http://localhost:3000/users";
+    NSString *url_String = @"http://192.168.100.105:3000/users";
     
     NSURL *url = [NSURL URLWithString:url_String];
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -248,7 +249,7 @@
             
             for(id arr in allUsers) {
                 User *user = [[User alloc] initWith:[arr[@"id"] intValue] withName:arr[@"user_name"] withPassword:arr[@"user_password"]];
-                [self.usersArray addObject:user];
+                [appDelegate.usersArray addObject:user];
             }
             callback(nil, YES);
             //NSLog(@"%@", error);

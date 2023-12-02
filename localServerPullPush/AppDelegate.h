@@ -6,9 +6,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
+@property (nonatomic) NSMutableArray<User *> *usersArray;
 
 @end
 
