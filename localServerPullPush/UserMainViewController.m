@@ -167,6 +167,16 @@
     }
     cell.messageText.text = appDelegate.usersArray[_messages[indexPath.row].messageFromUserId].user_name;
     cell.descriptionText.text = self.messages[indexPath.row].messageReceived;
+    
+    dispatch_async(dispatch_get_global_queue(0,0), ^{
+        NSData * data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: appDelegate.usersArray[self.messages[indexPath.row].messageFromUserId].user_avatar]];
+        if ( data == nil )
+            return;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // WARNING: is the cell still using the same data by this point??
+            cell.avatarImage.image = [UIImage imageWithData: data];
+        });
+    });
     return cell;
     
 }

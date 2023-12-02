@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) UILabel *messageText;
 @property (nonatomic, strong) UILabel *descriptionText;
+@property (nonatomic, strong) UIImageView *avatarImage;
 
 @end
 
