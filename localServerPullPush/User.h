@@ -14,8 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property int idNumber;
 @property (nonatomic) NSString *user_name;
 @property (nonatomic) NSString *user_password;
+@property (nonatomic) NSString *user_avatar;
 
-- (instancetype)initWith:(int)idNumber withName: (NSString *)user_name withPassword: (NSString *)user_password;
+- (instancetype)initWith:(int)idNumber withName: (NSString *)user_name withPassword: (NSString *)user_password withAvatar: (NSString *)user_avatar;
 
 @end
 

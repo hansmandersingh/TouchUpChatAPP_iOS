@@ -70,7 +70,8 @@
         User *loggedInUser;
         for(User *user in appDelegate.usersArray) {
             if([user.user_name isEqualToString:self.loginUsernameField.text] && [user.user_password isEqualToString:self.loginPasswordField.text]) {
-                loggedInUser = [[User alloc] initWith:user.idNumber withName:user.user_name withPassword:user.user_password];
+                loggedInUser = [[User alloc] initWith:user.idNumber withName:user.user_name withPassword:user.user_password
+                 withAvatar:user.user_avatar];
                 break;
             }
         }
@@ -248,7 +249,7 @@
             NSArray *allUsers = [NSJSONSerialization JSONObjectWithData:newData options:kNilOptions error:&err];
             
             for(id arr in allUsers) {
-                User *user = [[User alloc] initWith:[arr[@"id"] intValue] withName:arr[@"user_name"] withPassword:arr[@"user_password"]];
+                User *user = [[User alloc] initWith:[arr[@"id"] intValue] withName:arr[@"user_name"] withPassword:arr[@"user_password"] withAvatar:arr[@"user_avatar"]];
                 [appDelegate.usersArray addObject:user];
             }
             callback(nil, YES);

@@ -8,6 +8,7 @@ module.exports = function () {
         id: n,
         user_name: faker.person.fullName(),
         user_password: faker.internet.password(),
+        user_avatar: faker.image.avatar(),
       };
     }),
   };
