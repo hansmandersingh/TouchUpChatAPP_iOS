@@ -10,6 +10,7 @@
 #import "UserMessage.h"
 #import "UserMessageTableViewCell.h"
 #import "AppDelegate.h"
+#import "MessageDetailViewController.h"
 #define appDelegate ((AppDelegate *) [UIApplication sharedApplication].delegate)
 
 NS_ASSUME_NONNULL_BEGIN

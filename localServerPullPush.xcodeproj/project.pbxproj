@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D6314FEC2B1AF2E600B7057A /* MessageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6314FEB2B1AF2E600B7057A /* MessageDetailViewController.m */; };
 		D6323D182AF5884700C74956 /* UserMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6323D172AF5884700C74956 /* UserMainViewController.m */; };
 		D633814A2AF77DCB005EFF0B /* ShareAblesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63381492AF77DCB005EFF0B /* ShareAblesViewController.m */; };
 		D635555E2B12FB9E0097BC34 /* UserMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D635555D2B12FB9E0097BC34 /* UserMessageTableViewCell.m */; };
@@ -21,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D6314FEA2B1AF2E600B7057A /* MessageDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageDetailViewController.h; sourceTree = "<group>"; };
+		D6314FEB2B1AF2E600B7057A /* MessageDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageDetailViewController.m; sourceTree = "<group>"; };
 		D6323D162AF5884700C74956 /* UserMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserMainViewController.h; sourceTree = "<group>"; };
 		D6323D172AF5884700C74956 /* UserMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserMainViewController.m; sourceTree = "<group>"; };
 		D63381482AF77DCB005EFF0B /* ShareAblesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareAblesViewController.h; sourceTree = "<group>"; };
@@ -94,6 +97,8 @@
 				D65827922AFF5F9900F04F7D /* UserMessage.m */,
 				D635555C2B12FB9E0097BC34 /* UserMessageTableViewCell.h */,
 				D635555D2B12FB9E0097BC34 /* UserMessageTableViewCell.m */,
+				D6314FEA2B1AF2E600B7057A /* MessageDetailViewController.h */,
+				D6314FEB2B1AF2E600B7057A /* MessageDetailViewController.m */,
 			);
 			path = localServerPullPush;
 			sourceTree = "<group>";
@@ -170,6 +175,7 @@
 				D6323D182AF5884700C74956 /* UserMainViewController.m in Sources */,
 				D6AE52D42AEAB43B00DBE742 /* User.m in Sources */,
 				D6D41C222AE9DEC600A47C40 /* ViewController.m in Sources */,
+				D6314FEC2B1AF2E600B7057A /* MessageDetailViewController.m in Sources */,
 				D6D41C1C2AE9DEC600A47C40 /* AppDelegate.m in Sources */,
 				D635555E2B12FB9E0097BC34 /* UserMessageTableViewCell.m in Sources */,
 				D65827932AFF5F9900F04F7D /* UserMessage.m in Sources */,

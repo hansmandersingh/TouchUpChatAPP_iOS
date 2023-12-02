@@ -49,11 +49,12 @@
     [self.descriptionText.leadingAnchor constraintEqualToAnchor:self.avatarImage.trailingAnchor constant:10].active = YES;
     [self.descriptionText.trailingAnchor constraintEqualToAnchor:self.trailingAnchor constant:-10].active = YES;
     [self.descriptionText.topAnchor constraintEqualToAnchor:self.messageText.bottomAnchor constant:5].active = YES;
-    [self.bottomAnchor constraintEqualToAnchor:self.descriptionText.bottomAnchor constant:10].active = YES;
+    [self.heightAnchor constraintEqualToConstant:80].active = YES;
     [self.avatarImage.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:10].active = YES;
     [self.avatarImage.topAnchor constraintEqualToAnchor:self.topAnchor constant:5].active = YES;
     [self.avatarImage.bottomAnchor constraintEqualToAnchor:self.bottomAnchor constant:-10].active = YES;
     [self.avatarImage.widthAnchor constraintEqualToConstant:60].active = YES;
+    
 }
 
 @end

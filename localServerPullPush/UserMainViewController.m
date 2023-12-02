@@ -167,9 +167,9 @@
     }
     cell.messageText.text = appDelegate.usersArray[_messages[indexPath.row].messageFromUserId].user_name;
     cell.descriptionText.text = self.messages[indexPath.row].messageReceived;
-    
+    NSString *imageAvatar = appDelegate.usersArray[self.messages[indexPath.row].messageFromUserId].user_avatar;
     dispatch_async(dispatch_get_global_queue(0,0), ^{
-        NSData * data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: appDelegate.usersArray[self.messages[indexPath.row].messageFromUserId].user_avatar]];
+        NSData * data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: imageAvatar]];
         if ( data == nil )
             return;
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -183,6 +183,11 @@
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.messages.count;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    MessageDetailViewController *newMessageController = [[MessageDetailViewController alloc] init];
+    [self.navigationController pushViewController:newMessageController animated:YES];
 }
 
 @end
