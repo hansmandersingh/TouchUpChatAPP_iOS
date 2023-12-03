@@ -187,6 +187,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     MessageDetailViewController *newMessageController = [[MessageDetailViewController alloc] init];
+    newMessageController.message = self.messages[indexPath.row];
     [self.navigationController pushViewController:newMessageController animated:YES];
 }
 
