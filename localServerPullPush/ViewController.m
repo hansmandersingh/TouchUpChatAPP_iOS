@@ -41,6 +41,9 @@
             [self loginInfoPage];
             
             [self.loginButton addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+            
+            [self.registerButton addTarget:self action:@selector(registerUser) forControlEvents:UIControlEventTouchUpInside];
+            
             //need to add functionality here
         } else {
             [self hideActivityIndicator];
@@ -58,6 +61,11 @@
     }];
 
     // Do any additional setup after loading the view.
+}
+
+-(void)registerUser {
+    NSLog(@"this user is registering yayyy!!");
+    [self.navigationController presentViewController:[RegisterUserViewController new] animated:YES completion:nil];
 }
 
 -(void)login {

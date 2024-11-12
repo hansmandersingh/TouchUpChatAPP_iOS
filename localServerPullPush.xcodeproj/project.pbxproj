@@ -12,6 +12,7 @@
 		D633814A2AF77DCB005EFF0B /* ShareAblesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63381492AF77DCB005EFF0B /* ShareAblesViewController.m */; };
 		D635555E2B12FB9E0097BC34 /* UserMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D635555D2B12FB9E0097BC34 /* UserMessageTableViewCell.m */; };
 		D65827932AFF5F9900F04F7D /* UserMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = D65827922AFF5F9900F04F7D /* UserMessage.m */; };
+		D66B5CFB2CE3F35700CD8D31 /* RegisterUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D66B5CFA2CE3F35700CD8D31 /* RegisterUserViewController.m */; };
 		D6AE52D42AEAB43B00DBE742 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D6AE52D32AEAB43A00DBE742 /* User.m */; };
 		D6D41C1C2AE9DEC600A47C40 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D41C1B2AE9DEC600A47C40 /* AppDelegate.m */; };
 		D6D41C1F2AE9DEC600A47C40 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D41C1E2AE9DEC600A47C40 /* SceneDelegate.m */; };
@@ -32,6 +33,8 @@
 		D635555D2B12FB9E0097BC34 /* UserMessageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserMessageTableViewCell.m; sourceTree = "<group>"; };
 		D65827912AFF5F9900F04F7D /* UserMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserMessage.h; sourceTree = "<group>"; };
 		D65827922AFF5F9900F04F7D /* UserMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserMessage.m; sourceTree = "<group>"; };
+		D66B5CF92CE3F35700CD8D31 /* RegisterUserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterUserViewController.h; sourceTree = "<group>"; };
+		D66B5CFA2CE3F35700CD8D31 /* RegisterUserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterUserViewController.m; sourceTree = "<group>"; };
 		D6AE52D22AEAB43A00DBE742 /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		D6AE52D32AEAB43A00DBE742 /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		D6D41C172AE9DEC600A47C40 /* localServerPullPush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = localServerPullPush.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,6 +86,8 @@
 				D6D41C1E2AE9DEC600A47C40 /* SceneDelegate.m */,
 				D6D41C202AE9DEC600A47C40 /* ViewController.h */,
 				D6D41C212AE9DEC600A47C40 /* ViewController.m */,
+				D66B5CF92CE3F35700CD8D31 /* RegisterUserViewController.h */,
+				D66B5CFA2CE3F35700CD8D31 /* RegisterUserViewController.m */,
 				D6D41C262AE9DEC800A47C40 /* Assets.xcassets */,
 				D6D41C282AE9DEC800A47C40 /* LaunchScreen.storyboard */,
 				D6D41C2B2AE9DEC800A47C40 /* Info.plist */,
@@ -180,6 +185,7 @@
 				D635555E2B12FB9E0097BC34 /* UserMessageTableViewCell.m in Sources */,
 				D65827932AFF5F9900F04F7D /* UserMessage.m in Sources */,
 				D6D41C2D2AE9DEC800A47C40 /* main.m in Sources */,
+				D66B5CFB2CE3F35700CD8D31 /* RegisterUserViewController.m in Sources */,
 				D633814A2AF77DCB005EFF0B /* ShareAblesViewController.m in Sources */,
 				D6D41C1F2AE9DEC600A47C40 /* SceneDelegate.m in Sources */,
 			);

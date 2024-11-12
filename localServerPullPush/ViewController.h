@@ -9,6 +9,7 @@
 #import "ShareAblesViewController.h"
 #import "User.h"
 #import "AppDelegate.h"
+#import "RegisterUserViewController.h"
 #define appDelegate ((AppDelegate *) [UIApplication sharedApplication].delegate)
 
 @interface ViewController : ShareAblesViewController
