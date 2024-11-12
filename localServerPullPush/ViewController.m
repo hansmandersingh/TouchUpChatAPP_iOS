@@ -64,7 +64,6 @@
 }
 
 -(void)registerUser {
-    NSLog(@"this user is registering yayyy!!");
     [self.navigationController presentViewController:[RegisterUserViewController new] animated:YES completion:nil];
 }
 

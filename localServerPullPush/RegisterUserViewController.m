@@ -18,6 +18,18 @@
     self.title = @"Register";
     self.view.backgroundColor = [UIColor whiteColor];
     
+    [self loadSubmitForm];
+}
+
+-(void)initializePropeties {
+    self.username = [[UITextView alloc] init];
+    self.usernameField = [[UITextField alloc] init];
+    self.password = [[UITextView alloc] init];
+    self.passwordField = [[UITextField alloc] init];
+    self.submit = [UIButton init];
+}
+
+-(void)loadSubmitForm {
     
 }
 
