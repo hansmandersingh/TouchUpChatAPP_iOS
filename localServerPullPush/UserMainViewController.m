@@ -189,6 +189,7 @@
     MessageDetailViewController *newMessageController = [[MessageDetailViewController alloc] init];
     newMessageController.message = self.messages[indexPath.row];
     [self.navigationController pushViewController:newMessageController animated:YES];
+    
 }
 
 @end

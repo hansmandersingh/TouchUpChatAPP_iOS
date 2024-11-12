@@ -66,7 +66,6 @@
     shakes = 0;
     // this checks for login stuff
     if (appDelegate.usersArray.count != 0 && ![self.loginUsernameField.text isEqual:@""] && ![self.loginPasswordField.text isEqual:@""]) {
-        //NSLog(@"%@", self.loginUsernameField.text);
         User *loggedInUser;
         for(User *user in appDelegate.usersArray) {
             if([user.user_name isEqualToString:self.loginUsernameField.text] && [user.user_password isEqualToString:self.loginPasswordField.text]) {
@@ -155,6 +154,13 @@
     self.loginButton.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.loginButton];
     
+    [self.registerButton setTitle:@"  Register  " forState:UIControlStateNormal];
+    [self.registerButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.registerButton.titleLabel setFont:[UIFont systemFontOfSize:23]];
+    self.registerButton.backgroundColor = [UIColor systemBlueColor];
+    self.registerButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:self.registerButton];
+    
     [self.usernameLabel.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant:20].active = YES;
     [self.usernameLabel.leadingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor constant:10].active = YES;
     [self.usernameLabel.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor constant:-10].active = YES;
@@ -174,6 +180,8 @@
     [self.loginButton.topAnchor constraintEqualToAnchor:self.loginPasswordField.bottomAnchor constant:20].active = YES;
     [self.loginButton.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
     
+    [self.registerButton.topAnchor constraintEqualToAnchor:self.loginButton.bottomAnchor constant:20].active = YES;
+    [self.registerButton.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
 }
 
 -(void)showCustomErrorHandler:(NSString *) errorString withErrorHandler: (UILabel *) customErrorHandler {
@@ -224,6 +232,7 @@
     self.loginPasswordField = [[UITextField alloc] init];
     self.loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.customErrorHandler = [[UILabel alloc] init];
+    self.registerButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 }
 
 -(void)showUserAuthorization {

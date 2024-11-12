@@ -20,6 +20,7 @@
 @property (nonatomic) UITextField *loginPasswordField;
 @property (nonatomic) UIButton *loginButton;
 @property (nonatomic) UILabel *customErrorHandler;
+@property (nonatomic) UIButton *registerButton;
 
 @end
 
